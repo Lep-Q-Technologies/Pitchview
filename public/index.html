@@ -11,21 +11,31 @@
     <button id="fetch-btn">Fetch</button>
     <p id="response-output">Response Placeholder</p>
 
+    <button id="fetch-fixtures">Fetch Fixtures for the day</button>
+    <p id="fixtures-output">Fixtures Output Placeholder</p>
+
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const fetchBtn = document.getElementById('fetch-btn')
         const responseText = document.getElementById('response-output')
-
-        // fetchBtn.addEventListener('click', () => {
-        //   responseText.innerText = 'Static Text Replacement'
-        // })
-
         fetchBtn.addEventListener('click', async () => {
         const response = await fetch('/.netlify/functions/hello-world')
           .then(response => response.json()
         )
           responseText.innerText = response.message;
-})
+  })
+      })
+
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const fetchBtn = document.getElementById('fetch-fixtures')
+        const responseText = document.getElementById('fixtures-output')
+        fetchBtn.addEventListener('click', async () => {
+        const response = await fetch('/.netlify/functions/fetch-fixtures')
+          .then(response => response.json()
+        )
+          responseText.innerText = response.message;
+        })
       })
     </script>
   </body>
