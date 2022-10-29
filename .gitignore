@@ -1,2 +1,13 @@
 # Local Netlify folder
 .netlify
+
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+
+node_modules
+
+.env
