@@ -21,4 +21,5 @@ const datasourceOptions: PostgresConnectionOptions = {
 // Currently the entities and migrations are pointing to the dist folder for the app to work on Netlify
 // When running a migration, the entities and migrations need to point to the src folder and typescript files
 
+// new typeorm update wants you to export an instance of DataSource
 export default new DataSource(datasourceOptions);
