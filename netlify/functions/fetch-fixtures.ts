@@ -1,13 +1,18 @@
 import { Handler } from '@netlify/functions';
 
-import { Database } from '../../src/database/typeorm';
+import { Database } from '../../src/typeorm/connection';
 
-export const handler: Handler = async (event, context) => {
+export const handler: Handler = async () => {
   const database = new Database();
 
-  const dbConn = await database.getConnection();
-
-  console.log('DB CONN -> ', dbConn);
+  try {
+    console.log('Connecting to database...');
+    const connection = await database.connect();
+    const fixtures = await connection.query('SELECT * FROM fixture');
+    console.log('Connection Established - Fixtures here:', fixtures);
+  } catch (error) {
+    console.error('Error in connection:', error);
+  }
 
   return {
     statusCode: 200,
